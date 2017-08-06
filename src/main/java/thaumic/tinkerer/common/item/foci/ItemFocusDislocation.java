@@ -160,7 +160,7 @@ public class ItemFocusDislocation extends ItemModFocus {
 
     @Override
     public String getSortingHelper(ItemStack itemstack) {
-    	return "TTDL" + super.getSortingHelper(itemstack) + getUniqueKey(itemstack);
+        return "TTDL" + super.getSortingHelper(itemstack) + getUniqueKey(itemstack);
     }
     
 
