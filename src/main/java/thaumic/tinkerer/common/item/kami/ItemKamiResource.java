@@ -35,9 +35,11 @@ import thaumic.tinkerer.common.lib.LibResearch;
 import thaumic.tinkerer.common.registry.*;
 import thaumic.tinkerer.common.research.*;
 
+import witchinggadgets.api.IPrimordialCrafting;
+
 import java.util.List;
 
-public class ItemKamiResource extends ItemKamiBase {
+public class ItemKamiResource extends ItemKamiBase implements IPrimordialCrafting {
 
     final int subtypes = 8;
     IIcon[] icons;
@@ -80,6 +82,12 @@ public class ItemKamiResource extends ItemKamiBase {
     public String getItemName() {
         return LibItemNames.KAMI_RESOURCE;
     }
+
+    @Override
+	public int getReturnedPearls(ItemStack stack)
+	{
+		return 1;
+	}
 
     @Override
     public IRegisterableResearch getResearchItem() {
