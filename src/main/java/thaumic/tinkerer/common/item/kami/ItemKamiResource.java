@@ -86,7 +86,11 @@ public class ItemKamiResource extends ItemKamiBase implements IPrimordialCraftin
     @Override
 	public int getReturnedPearls(ItemStack stack)
 	{
+        if(stack.getItemDamage() == 0){
 		return 1;
+        } else{
+            return 0;
+        }
 	}
 
     @Override
