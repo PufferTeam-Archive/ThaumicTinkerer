@@ -107,6 +107,7 @@ public class TTCommonProxy {
     public void init(FMLInitializationEvent event) {
         ModEnchantments.initEnchantments();
         EnchantmentManager.initEnchantmentData();
+        ModEnchantments.addInfusionEnchants();
         ModPotions.initPotions();
         ThaumicTinkerer.registry.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(ThaumicTinkerer.instance, new GuiHandler());

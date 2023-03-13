@@ -57,7 +57,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_ASCENT_BOOST))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_ASCENT_BOOST")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_SLOW_FALL,
@@ -70,7 +73,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_SLOW_FALL))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_SLOW_FALL")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_AUTO_SMELT,
@@ -83,7 +89,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_AUTO_SMELT))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_AUTO_SMELT")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_DESINTEGRATE,
@@ -96,7 +105,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_DESINTEGRATE))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_DESINTEGRATE")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_QUICK_DRAW,
@@ -109,7 +121,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_QUICK_DRAW))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_QUICK_DRAW")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_VAMPIRISM,
@@ -122,7 +137,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_VAMPIRISM))
                 .setParents(LibResearch.KEY_ENCHANTER);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_VAMPIRISM")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_FOCUSED_STRIKE,
@@ -135,7 +153,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_FOCUSED_STRIKE))
                 .setParents(LibResearch.KEY_ENCHANT_VAMPIRISM);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_FOCUSED")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_DISPERSED_STRIKE,
@@ -148,7 +169,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_DISPERSED_STRIKE))
                 .setParents(LibResearch.KEY_ENCHANT_VAMPIRISM);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_DISPERSED")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_FINAL_STRIKE,
@@ -162,7 +186,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_FINAL_STRIKE))
                 .setParents(LibResearch.KEY_ENCHANT_FOCUSED_STRIKE, LibResearch.KEY_ENCHANT_DISPERSED_STRIKE);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_FINAL")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_POUNCE,
@@ -176,7 +203,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_POUNCE))
                 .setParents(LibResearch.KEY_ENCHANT_ASCENT_BOOST);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_POUNCE")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_SHATTER,
@@ -190,7 +220,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_SHATTER))
                 .setParents(LibResearch.KEY_ENCHANT_DESINTEGRATE);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_SHATTER")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_SHOCKWAVE,
@@ -204,7 +237,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_SHOCKWAVE))
                 .setParents(LibResearch.KEY_ENCHANT_SLOW_FALL);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_SHOCKWAVE")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_TUNNEL,
@@ -218,7 +254,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_TUNNEL))
                 .setParents(LibResearch.KEY_ENCHANT_AUTO_SMELT);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_TUNNEL")))
+                .setSecondary()
+                .registerResearchItem();
 
         research = new TTResearchItem(
                         LibResearch.KEY_ENCHANT_VALIANCE,
@@ -231,7 +270,10 @@ public final class ResearchHelper {
                         2,
                         new ResourceLocation(LibResources.ENCHANT_VALIANCE))
                 .setParents(LibResearch.KEY_ENCHANT_VAMPIRISM);
-        research.setPages(new ResearchPage("0")).setSecondary().registerResearchItem();
+        research.setPages(new ResearchPage("0"), new ResearchPage((InfusionEnchantmentRecipe)
+                        ConfigResearch.recipes.get("TTENCH_VALIANCE")))
+                .setSecondary()
+                .registerResearchItem();
         // Peripheral documentation research
         if (Loader.isModLoaded("ComputerCraft")) {
             research = new TTResearchItem(
