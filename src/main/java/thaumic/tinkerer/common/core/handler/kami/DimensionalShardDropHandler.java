@@ -14,7 +14,10 @@
  */
 package thaumic.tinkerer.common.core.handler.kami;
 
+import chylex.hee.entity.mob.EntityMobAngryEnderman;
+import chylex.hee.entity.mob.EntityMobHomelandEnderman;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityPigZombie;
@@ -30,7 +33,7 @@ public class DimensionalShardDropHandler {
     @SubscribeEvent
     public void onEntityLivingDrops(LivingDropsEvent event) {
         if (event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer) {
-            if (event.entityLiving instanceof EntityEnderman
+            if (validEnder(event.entityLiving)
                     && event.entityLiving.dimension == ConfigHandler.endDimensionID
                     && Math.random() <= 1D / 32D)
                 event.drops.add(new EntityItem(
@@ -40,7 +43,7 @@ public class DimensionalShardDropHandler {
                         event.entityLiving.posZ,
                         new ItemStack(ThaumicTinkerer.registry.getFirstItemFromClass(ItemKamiResource.class), 1, 7)));
 
-            if (event.entityLiving instanceof EntityPigZombie
+            if (validNether(event.entityLiving)
                     && event.entityLiving.dimension == ConfigHandler.netherDimensionID
                     && Math.random() <= 1D / 16D)
                 event.drops.add(new EntityItem(
@@ -50,5 +53,15 @@ public class DimensionalShardDropHandler {
                         event.entityLiving.posZ,
                         new ItemStack(ThaumicTinkerer.registry.getFirstItemFromClass(ItemKamiResource.class), 1, 6)));
         }
+    }
+
+    public boolean validEnder(Entity entity) {
+        return (entity instanceof EntityEnderman
+                || entity instanceof EntityMobAngryEnderman
+                || entity instanceof EntityMobHomelandEnderman);
+    }
+
+    public boolean validNether(Entity entity) {
+        return (entity instanceof EntityPigZombie);
     }
 }

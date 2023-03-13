@@ -15,6 +15,7 @@ dependencies {
     compileOnly('com.github.GTNewHorizons:ForgeMultipart:1.2.7:dev') {transitive=false}
     compileOnly('com.github.GTNewHorizons:CodeChickenLib:1.1.5.3:dev') {transitive=false}
     compileOnly('com.github.GTNewHorizons:OpenComputers:1.7.5.23-GTNH:api') {transitive=false}
+    compileOnly('com.github.GTNewHorizons:Hardcore-Ender-Expansion:1.9.7-GTNH:dev') {transitive=false}
 
     compileOnly('curse.maven:computercraft-67504:2269339')
     compileOnly('curse.maven:cofh-lib-220333:2388748')
