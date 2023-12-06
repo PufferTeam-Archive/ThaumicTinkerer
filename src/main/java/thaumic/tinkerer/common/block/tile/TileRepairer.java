@@ -25,6 +25,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import appeng.api.movable.IMovableTile;
+import cpw.mods.fml.common.Loader;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -34,8 +36,6 @@ import thaumic.tinkerer.common.ThaumicTinkerer;
 import thaumic.tinkerer.common.compat.TinkersConstructCompat;
 import thaumic.tinkerer.common.core.handler.ConfigHandler;
 import thaumic.tinkerer.common.lib.LibBlockNames;
-import appeng.api.movable.IMovableTile;
-import cpw.mods.fml.common.Loader;
 
 /* import thaumic.tinkerer.common.compat.TinkersConstructCompat; */
 
@@ -81,7 +81,8 @@ public class TileRepairer extends TileEntity
                     }
                 }
             }
-            if (inventorySlots[0] != null && inventorySlots[0].getItemDamage() > 0) {
+            if (inventorySlots[0] != null && inventorySlots[0].getItem().isRepairable()
+                    && inventorySlots[0].getItemDamage() > 0) {
                 int essentia = drawEssentia();
                 int dmg = inventorySlots[0].getItemDamage();
                 inventorySlots[0].setItemDamage(Math.max(0, dmg - essentia));
