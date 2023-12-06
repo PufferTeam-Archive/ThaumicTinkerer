@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchPage;
@@ -34,7 +35,6 @@ import thaumic.tinkerer.common.lib.LibResearch;
 import thaumic.tinkerer.common.registry.*;
 import thaumic.tinkerer.common.research.*;
 import witchinggadgets.api.IPrimordialCrafting;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemKamiResource extends ItemKamiBase implements IPrimordialCrafting {
 

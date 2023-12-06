@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchPage;
@@ -40,7 +41,6 @@ import thaumic.tinkerer.common.registry.ThaumicTinkererRecipe;
 import thaumic.tinkerer.common.research.IRegisterableResearch;
 import thaumic.tinkerer.common.research.KamiResearchItem;
 import thaumic.tinkerer.common.research.ResearchHelper;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemProtoclay extends ItemKamiBase {
 

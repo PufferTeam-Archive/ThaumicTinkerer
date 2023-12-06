@@ -19,12 +19,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
-import thaumic.tinkerer.common.ThaumicTinkerer;
-import thaumic.tinkerer.common.core.handler.ConfigHandler;
-import thaumic.tinkerer.common.item.kami.ItemKamiResource;
 import chylex.hee.entity.mob.EntityMobAngryEnderman;
 import chylex.hee.entity.mob.EntityMobHomelandEnderman;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import thaumic.tinkerer.common.ThaumicTinkerer;
+import thaumic.tinkerer.common.core.handler.ConfigHandler;
+import thaumic.tinkerer.common.item.kami.ItemKamiResource;
 
 public class DimensionalShardDropHandler {
 

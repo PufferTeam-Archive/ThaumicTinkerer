@@ -13,16 +13,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 
-import thaumic.tinkerer.client.lib.LibResources;
-import thaumic.tinkerer.common.ThaumicTinkerer;
-import thaumic.tinkerer.common.core.handler.ModCreativeTab;
-import thaumic.tinkerer.common.research.IRegisterableResearch;
-
 import com.google.common.reflect.ClassPath;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+import thaumic.tinkerer.client.lib.LibResources;
+import thaumic.tinkerer.common.ThaumicTinkerer;
+import thaumic.tinkerer.common.core.handler.ModCreativeTab;
+import thaumic.tinkerer.common.research.IRegisterableResearch;
 
 public class TTRegistry {
 
