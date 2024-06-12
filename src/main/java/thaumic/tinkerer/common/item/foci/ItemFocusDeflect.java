@@ -11,13 +11,17 @@
  */
 package thaumic.tinkerer.common.item.foci;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.entity.projectile.EntitySnowball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -32,9 +36,7 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thaumic.tinkerer.common.ThaumicTinkerer;
-import thaumic.tinkerer.common.compat.BloodMagic;
-import thaumic.tinkerer.common.compat.BotaniaFunctions;
-import thaumic.tinkerer.common.core.helper.ProjectileHelper;
+import thaumic.tinkerer.common.compat.SpecialMobs;
 import thaumic.tinkerer.common.lib.LibItemNames;
 import thaumic.tinkerer.common.lib.LibResearch;
 import thaumic.tinkerer.common.registry.ThaumicTinkererInfusionRecipe;
@@ -42,81 +44,81 @@ import thaumic.tinkerer.common.registry.ThaumicTinkererRecipe;
 import thaumic.tinkerer.common.research.IRegisterableResearch;
 import thaumic.tinkerer.common.research.ResearchHelper;
 import thaumic.tinkerer.common.research.TTResearchItem;
-import vazkii.botania.api.internal.IManaBurst;
 
 public class ItemFocusDeflect extends ItemModFocus {
 
-    public static List<Class<?>> DeflectBlacklist = new ArrayList<Class<?>>();
+    public static Set<Class<?>> DeflectWhitelist = new HashSet<Class<?>>();
     private static final AspectList visUsage = new AspectList().add(Aspect.ORDER, 8).add(Aspect.AIR, 4);
 
-    public static void setupBlackList() {
-        DeflectBlacklist.add(EntityExpBottle.class);
-        if (Loader.isModLoaded("BloodMagic")) {
-            BloodMagic.setupClass();
+    public static void setupWhiteList() {
+        DeflectWhitelist.add(EntityArrow.class);
+        DeflectWhitelist.add(EntityPotion.class);
+        DeflectWhitelist.add(EntitySnowball.class);
+        DeflectWhitelist.add(EntityEgg.class);
+
+        if (Loader.isModLoaded("Special Mobs")) {
+            SpecialMobs.setupClass();
         }
     }
 
-    public static void protectFromProjectiles(EntityPlayer p, ItemStack stack) {
+    public static void protectFromProjectiles(EntityPlayer player, ItemStack stack) {
         int range = 0;
         if (stack != null) {
             ItemWandCasting wand = (ItemWandCasting) stack.getItem();
             range = wand.getFocusEnlarge(stack);
         }
 
-        List<Entity> projectiles = p.worldObj.getEntitiesWithinAABB(
+        List<Entity> projectiles = player.worldObj.getEntitiesWithinAABB(
                 IProjectile.class,
                 AxisAlignedBB.getBoundingBox(
-                        p.posX - (4 + range),
-                        p.posY - (4 + range),
-                        p.posZ - (4 + range),
-                        p.posX + (3 + range),
-                        p.posY + (3 + range),
-                        p.posZ + (3 + range)));
+                        player.posX - (4 + range),
+                        player.posY - (4 + range),
+                        player.posZ - (4 + range),
+                        player.posX + (3 + range),
+                        player.posY + (3 + range),
+                        player.posZ + (3 + range)));
 
-        for (Entity e : projectiles) {
-            if (CheckBlackList(e) || ProjectileHelper.getOwner(e) == p) continue;
-            Vector3 motionVec = new Vector3(e.motionX, e.motionY, e.motionZ).normalize().multiply(
-                    Math.sqrt(
-                            (e.posX - p.posX) * (e.posX - p.posX) + (e.posY - p.posY) * (e.posY - p.posY)
-                                    + (e.posZ - p.posZ) * (e.posZ - p.posZ))
-                            * 2);
+        for (Entity projectile : projectiles) {
+            if (!isValidProjectile(projectile)) continue;
+            Vector3 motionVec = new Vector3(projectile.motionX, projectile.motionY, projectile.motionZ).normalize()
+                    .multiply(
+                            Math.sqrt(
+                                    (projectile.posX - player.posX) * (projectile.posX - player.posX)
+                                            + (projectile.posY - player.posY) * (projectile.posY - player.posY)
+                                            + (projectile.posZ - player.posZ) * (projectile.posZ - player.posZ))
+                                    * 2);
 
-            for (int i = 0; i < 6; i++)
-                ThaumicTinkerer.tcProxy.sparkle((float) e.posX, (float) e.posY, (float) e.posZ, 6);
+            for (int i = 0; i < 6; i++) ThaumicTinkerer.tcProxy
+                    .sparkle((float) projectile.posX, (float) projectile.posY, (float) projectile.posZ, 6);
 
-            e.posX += motionVec.x;
-            e.posY += motionVec.y;
-            e.posZ += motionVec.z;
+            projectile.posX += motionVec.x;
+            projectile.posY += motionVec.y;
+            projectile.posZ += motionVec.z;
         }
+    }
+
+    private static boolean isValidProjectile(Entity entity) {
+        Class<? extends Entity> aClass = entity.getClass();
+        if (DeflectWhitelist.contains(aClass)) return true;
+
+        for (Class<?> testClass : DeflectWhitelist) {
+            if (testClass.isInterface() && testClass.isAssignableFrom(aClass)) return true;
+        }
+        return false;
     }
 
     @Override
     public FocusUpgradeType[] getPossibleUpgradesByRank(ItemStack itemstack, int rank) {
         switch (rank) {
             case 1:
-                return new FocusUpgradeType[] { FocusUpgradeType.frugal };
-            case 2:
-                return new FocusUpgradeType[] { FocusUpgradeType.frugal, FocusUpgradeType.enlarge };
             case 3:
-                return new FocusUpgradeType[] { FocusUpgradeType.frugal };
-            case 4:
-                return new FocusUpgradeType[] { FocusUpgradeType.frugal, FocusUpgradeType.enlarge };
             case 5:
                 return new FocusUpgradeType[] { FocusUpgradeType.frugal };
+            case 2:
+            case 4:
+                return new FocusUpgradeType[] { FocusUpgradeType.frugal, FocusUpgradeType.enlarge };
         }
         return null;
-    }
-
-    private static boolean CheckBlackList(Entity entity) {
-        Class<? extends Entity> aClass = entity.getClass();
-        if (DeflectBlacklist.contains(aClass)) return true;
-        if (Loader.isModLoaded("Botania") && entity instanceof IManaBurst) {
-            return BotaniaFunctions.isEntityHarmless(entity);
-        }
-        for (Class<?> testClass : DeflectBlacklist) {
-            if (testClass.isInterface() && testClass.isAssignableFrom(aClass)) return true;
-        }
-        return false;
     }
 
     @Override

@@ -202,7 +202,7 @@ public class TTCommonProxy {
         ResearchHelper.initResearch();
         ThaumicTinkerer.registry.postInit();
         AspectCropLootManager.populateLootMap();
-        ItemFocusDeflect.setupBlackList();
+        ItemFocusDeflect.setupWhiteList();
     }
 
     @Optional.Method(modid = "EnderIO")
