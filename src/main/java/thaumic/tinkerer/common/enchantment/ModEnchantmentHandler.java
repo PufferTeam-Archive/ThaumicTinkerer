@@ -111,7 +111,7 @@ public class ModEnchantmentHandler {
                     event.ammount /=  2 * successiveStrikes * focusedStrikes;
                 }
                 if (dispersedStrikes > 0) {
-                    event.ammount *= 2 / successiveStrikes * dispersedStrikes;
+                    event.ammount *= 2.5 / successiveStrikes * dispersedStrikes;
                 }
             }
 
