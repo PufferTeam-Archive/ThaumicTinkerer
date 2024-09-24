@@ -102,17 +102,16 @@ public class ModEnchantmentHandler {
                     heldItem.stackTagCompound.setLong(NBTLastTarget, entityId.getMostSignificantBits());
                     heldItem.stackTagCompound.setLong(NBTLastTarget2, entityId.getLeastSignificantBits());
                 } else {
-                    successiveStrikes = Math.max(successiveStrikes + 1, 5);
+                    if(successiveStrikes < 5)
+                        successiveStrikes++;
                 }
                 heldItem.stackTagCompound.setInteger(NBTSuccessiveStrike, successiveStrikes);
 
                 if (focusedStrikes > 0) {
-                    event.ammount /= 2;
-                    event.ammount += (.5 * Math.max(successiveStrikes, 5) * event.ammount * focusedStrikes);
+                    event.ammount /=  2 * successiveStrikes * focusedStrikes;
                 }
                 if (dispersedStrikes > 0) {
-                    event.ammount *= 1 + 0.6 * dispersedStrikes + (successiveStrikes / 5);
-                    event.ammount /= 1 + 0.25 * dispersedStrikes + (successiveStrikes * 2.5);
+                    event.ammount *= 2 / successiveStrikes * dispersedStrikes;
                 }
             }
 
