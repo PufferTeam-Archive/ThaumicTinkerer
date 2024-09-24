@@ -98,7 +98,7 @@ public class ModEnchantmentHandler {
                 UUID entityId = event.entityLiving.getUniqueID();
 
                 if (!lastTarget.equals(entityId)) {
-                    successiveStrikes = 0;
+                    successiveStrikes = 1;
                     heldItem.stackTagCompound.setLong(NBTLastTarget, entityId.getMostSignificantBits());
                     heldItem.stackTagCompound.setLong(NBTLastTarget2, entityId.getLeastSignificantBits());
                 } else {
