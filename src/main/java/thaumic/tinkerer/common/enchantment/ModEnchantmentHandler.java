@@ -107,10 +107,10 @@ public class ModEnchantmentHandler {
                 heldItem.stackTagCompound.setInteger(NBTSuccessiveStrike, successiveStrikes);
 
                 if (focusedStrikes > 0) {
-                    event.ammount *= 0.25 * successiveStrikes * focusedStrikes;
+                    event.ammount *= Math.max(0.25 * successiveStrikes * focusedStrikes, 1);
                 }
                 if (dispersedStrikes > 0) {
-                    event.ammount *= 1.25 / successiveStrikes * dispersedStrikes;
+                    event.ammount *= Math.max(1.25 / successiveStrikes * dispersedStrikes, 1);
                 }
             }
 
